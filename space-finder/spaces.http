@@ -1,2 +1,7 @@
-GET https://jwhbn9t95b.execute-api.us-west-2.amazonaws.com/prod/spaces/
+
+
+GET https://bgu7c83m9f.execute-api.us-west-2.amazonaws.com/prod/spaces/
+###
+
+POST https://bgu7c83m9f.execute-api.us-west-2.amazonaws.com/prod/spaces/
 ###
