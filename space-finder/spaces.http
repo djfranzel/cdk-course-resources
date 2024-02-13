@@ -11,5 +11,5 @@ Content-Type: application/json
 }
 ###
 
-GET https://bgu7c83m9f.execute-api.us-west-2.amazonaws.com/prod/spaces
+GET https://bgu7c83m9f.execute-api.us-west-2.amazonaws.com/prod/spaces/
 ###
