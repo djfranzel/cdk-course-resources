@@ -1,15 +1,46 @@
-import { DynamoDBClient, ScanCommand } from "@aws-sdk/client-dynamodb";
+import { DynamoDBClient, GetItemCommand, ScanCommand } from "@aws-sdk/client-dynamodb";
+import { unmarshall } from "@aws-sdk/util-dynamodb";
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
 export async function getSpaces(event: APIGatewayProxyEvent, ddbClient: DynamoDBClient): Promise<APIGatewayProxyResult> {
 
-    const result = await ddbClient.send(new ScanCommand({
-        TableName: process.env.TABLE_NAME,
-    }))
-    console.log(result.Items);
+    if (event.queryStringParameters) {
+        if ('id' in event.queryStringParameters) {
+            const id = event.queryStringParameters['id'];
+            const getItemResponse = await ddbClient.send(new GetItemCommand({
+                TableName: process.env.TABLE_NAME,
+                Key: {
+                    'id': { S: id }
+                }
+            }));
+            if (getItemResponse.Item) {
+                const unmarshalledItem = unmarshall(getItemResponse.Item);
+                return {
+                    statusCode: 200,
+                    body: JSON.stringify(unmarshalledItem)
+                }
+            } else {
+                return {
+                    statusCode: 404,
+                    body: JSON.stringify(`Space with id ${id} not found!`)
+                }
+            }
+        } else {
+            return {
+                statusCode: 400,
+                body: JSON.stringify('Id required!')
+            }
+        }
+    } else {
+        const result = await ddbClient.send(new ScanCommand({
+            TableName: process.env.TABLE_NAME,
+        }))
+        const unmarshalledItems = result.Items?.map(item => unmarshall(item));
+        console.log(unmarshalledItems);
 
-    return {
-        statusCode: 201,
-        body: JSON.stringify(result.Items)
+        return {
+            statusCode: 201,
+            body: JSON.stringify(unmarshalledItems)
+        }
     }
 }

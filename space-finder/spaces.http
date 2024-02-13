@@ -2,14 +2,25 @@
 
 GET https://bgu7c83m9f.execute-api.us-west-2.amazonaws.com/prod/spaces/
 ###
-
+ 
 POST https://bgu7c83m9f.execute-api.us-west-2.amazonaws.com/prod/spaces/
 Content-Type: application/json
 
 {
-    "location": "Paris"
+    "location": "Minneapolis test"
 }
 ###
 
-GET https://bgu7c83m9f.execute-api.us-west-2.amazonaws.com/prod/spaces/
+GET https://bgu7c83m9f.execute-api.us-west-2.amazonaws.com/prod/spaces?id=00e083ea-17cf-4093-8074-a413bdb6cab8
+###
+
+PUT https://bgu7c83m9f.execute-api.us-west-2.amazonaws.com/prod/spaces?id=00e083ea-17cf-4093-8074-a413bdb6cab8
+Content-Type: application/json
+
+{
+    "location": "Minneapolis1"
+}
+###
+
+DELETE https://bgu7c83m9f.execute-api.us-west-2.amazonaws.com/prod/spaces?id=00e083ea-17cf-4093-8074-a413bdb6cab8
 ###
