@@ -1,14 +1,14 @@
 import { DynamoDBClient, PutItemCommand } from "@aws-sdk/client-dynamodb";
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import { v4 } from "uuid";
+import { createRandomId, parseJSON } from "../shared/Utils";
 
 
 
 export async function postSpaces(event: APIGatewayProxyEvent, ddbClient: DynamoDBClient): Promise<APIGatewayProxyResult> {
 
-
-    const randomId = v4();
-    const item = JSON.parse(event.body);
+    const randomId = createRandomId();
+    const item = parseJSON(event.body);
 
     const result = await ddbClient.send(new PutItemCommand({
         TableName: process.env.TABLE_NAME,
@@ -25,6 +25,6 @@ export async function postSpaces(event: APIGatewayProxyEvent, ddbClient: DynamoD
 
     return {
         statusCode: 201,
-        body: JSON.stringify({id: randomId})
+        body: JSON.stringify({ id: randomId })
     }
 }
