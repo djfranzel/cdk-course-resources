@@ -10,7 +10,7 @@ async function testAuth(){
     )
     // console.log(loginResult.getSignInUserSession().getIdToken().getJwtToken());
     const credentials = await service.generateTemporaryCredentials(loginResult);
-    // console.log(credentials)
+    console.log(credentials)
     const buckets = await listBuckets(credentials);
     console.log(buckets);
 }
