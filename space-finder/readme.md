@@ -1,0 +1,1 @@
+aws cognito-idp admin-set-user-password --user-pool-id us-west-2_9ekqosm9e --username david.franzel --password "Qwe123\$\$" --permanent

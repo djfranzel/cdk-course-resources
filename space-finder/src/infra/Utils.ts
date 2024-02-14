@@ -5,3 +5,4 @@ export function getSuffixFromStack(stack: Stack) {
     const suffix = Fn.select(4, Fn.split('-', shortStackId));
     return suffix;
 }
+

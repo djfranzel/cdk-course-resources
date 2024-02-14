@@ -1,9 +1,13 @@
+@url = https://bgu7c83m9f.execute-api.us-west-2.amazonaws.com/prod
+@token = eyJraWQiOiJaZm9tZTU0SlljYmJDNmRUSGUyZzNaVnhMYmRPWVJWRVVUQ21kVkJ1OElzPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJiMTAyM2M2NC1jNmUwLTQzNDMtOGQ5Zi1hZTk1ZDQwMTFlYzQiLCJjb2duaXRvOmdyb3VwcyI6WyJhZG1pbnMiXSwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLnVzLXdlc3QtMi5hbWF6b25hd3MuY29tXC91cy13ZXN0LTJfOWVrcW9zbTllIiwiY29nbml0bzp1c2VybmFtZSI6ImRhdmlkLmZyYW56ZWwiLCJvcmlnaW5fanRpIjoiNWVjNWQ4OTAtZjBlMS00NmE0LWIxZjMtOTVlNWIyY2I1NTVjIiwiYXVkIjoiNGJrOGJhcDMyZ3VjajluNmN2dDBwNGloaCIsImV2ZW50X2lkIjoiZjczZDRkNGQtZjA0Ni00YTEyLTg1ZjUtNTk2MDI5NDZhNDNiIiwidG9rZW5fdXNlIjoiaWQiLCJhdXRoX3RpbWUiOjE3MDc5MzE1NTMsImV4cCI6MTcwNzkzNTE1MywiaWF0IjoxNzA3OTMxNTUzLCJqdGkiOiI1ZWZjZjUyMS1iZGNjLTQ4NTItODM2Yy1hM2U1M2ZjNDdiZjkiLCJlbWFpbCI6ImRhdmlkLmZyYW56ZWxAYXN0b250ZWNoLmNvbSJ9.OgMRRltONWdPRYQ0dbg22NZvN_JOnfZ1OTZTpmqLhuFNCeYGxl2vVcAA_D3C7MbVOsV0B0ZSMDKxvDzO1NH_dDjRhgCrI_9UO1ugvuYvJ-4Hld9wQqTTBdvNRe1mZHXLdITnVed0WBdykpizxVkXeLZT3f6-pLQdpKB1x9Jq9rSwFLb5_pxx6zXglLuX16fW5AuGIHui1Qc_RkO9hlA2uP10w1VZDm7cGjMGhux4DWj1saR0xqy99kAK236jExEvkC8EMgktZZMph8fgRqdx8Cne7E5g-VK_bslfxargC-WRM2ifbrW0LCK7z4IfKPyVsWSg5vmgBb12MYwCy8210A
+@spacesId = 07c8b7e8-a4ef-40dd-80e9-e4522dd65ab7
 
-
-GET https://bgu7c83m9f.execute-api.us-west-2.amazonaws.com/prod/spaces/
+GET {{url}}/spaces/
+Authorization: {{token}}
 ###
  
-POST https://bgu7c83m9f.execute-api.us-west-2.amazonaws.com/prod/spaces/
+POST {{url}}/spaces/
+Authorization: {{token}}
 Content-Type: application/json
 
 {
@@ -11,10 +15,12 @@ Content-Type: application/json
 }
 ###
 
-GET https://bgu7c83m9f.execute-api.us-west-2.amazonaws.com/prod/spaces?id=d6688b82-b063-47a3-afc6-6eb7831b3931
+GET {{url}}/spaces?id={{spacesId}}
+Authorization: {{token}}
 ###
 
-PUT https://bgu7c83m9f.execute-api.us-west-2.amazonaws.com/prod/spaces?id=d6688b82-b063-47a3-afc6-6eb7831b3931
+PUT {{url}}/prod/spaces?id={{spacesId}}
+Authorization: {{token}}
 Content-Type: application/json
 
 {
@@ -22,5 +28,6 @@ Content-Type: application/json
 }
 ###
 
-DELETE https://bgu7c83m9f.execute-api.us-west-2.amazonaws.com/prod/spaces?id=d6688b82-b063-47a3-afc6-6eb7831b3931
+DELETE {{url}}/spaces?id={{spacesId}}
+Authorization: {{token}}
 ###
