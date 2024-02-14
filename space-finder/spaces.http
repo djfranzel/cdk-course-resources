@@ -5,7 +5,7 @@
 GET {{url}}/spaces/
 Authorization: {{token}}
 ###
- 
+
 POST {{url}}/spaces/
 Authorization: {{token}}
 Content-Type: application/json
