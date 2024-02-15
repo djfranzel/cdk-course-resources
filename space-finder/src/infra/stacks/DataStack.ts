@@ -36,7 +36,7 @@ export class DataStack extends Stack {
         });
         new CfnOutput(this, 'SpaceFinderPhotosBucketName', {
             value: this.photosBucket.bucketName
-        })
+        });
 
         this.spacesTable = new Table(this, 'SpacesTable', {
             partitionKey: {

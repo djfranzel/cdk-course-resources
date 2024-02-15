@@ -21,7 +21,7 @@ Amplify.configure({
 export class AuthService {
 
     private user: CognitoUser | undefined;
-    private jwtToken: string | undefined;
+    public jwtToken: string | undefined;
     private temporaryCredentials: object | undefined;
 
     public async login(userName: string, password: string): Promise<Object | undefined> {
@@ -36,7 +36,7 @@ export class AuthService {
     }
 
     public async getTemporaryCredentials() {
-        if(this.temporaryCredentials) {
+        if (this.temporaryCredentials) {
             return this.temporaryCredentials;
         }
         this.temporaryCredentials = await this.generateTemporaryCredentials();
@@ -62,5 +62,12 @@ export class AuthService {
         });
         const credentials = await cognitoIdentity.config.credentials();
         return credentials;
+    }
+
+    public isAuthorized() {
+        if (this.user) {
+            return true;
+        }
+        return true;
     }
 }

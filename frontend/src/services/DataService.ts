@@ -1,8 +1,9 @@
 import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { AuthService } from "./AuthService";
 import { DataStack, ApiStack } from '../../../space-finder/outputs.json';
+import { SpaceEntry } from "../components/model/model";
 
-const spacesUrl = ApiStack.SpacesApiEndpoint36C4F3B6;
+const spacesUrl = ApiStack.SpacesApiEndpoint36C4F3B6 + 'spaces';
 
 export class DataService {
 
@@ -15,17 +16,45 @@ export class DataService {
         this.authService = authService;
     }
 
+    public reserveSpace(spaceId: string) {
+        return spaceId;
+    }
+
+    public async getSpaces(): Promise<SpaceEntry[]> {
+        console.log('get spaces!!!')
+        const getSpacesResult = await fetch(spacesUrl, {
+            method: 'GET',
+            headers: {
+                Authorization: this.authService.jwtToken!
+            }
+        });
+        console.log('spacesResults: ', getSpacesResult)
+        const getSpacesResultJson = await getSpacesResult.json();
+        return getSpacesResultJson;
+    }
+
     public async createSpace(name: string, location: string, photo?: File) {
+        const space = {} as any;
+        space.name = name;
+        space.location = location;
         if (photo) {
             const uploadUrl = await this.uploadPublicFile(photo);
-            console.log(uploadUrl);
+            space.photoUrl = uploadUrl;
         }
-        return '123'
+        const postResult = await fetch(spacesUrl, {
+            method: 'POST',
+            body: JSON.stringify(space),
+            headers: {
+                Authorization: this.authService.jwtToken!
+            }
+        });
+        const postResultJSON = await postResult.json();
+        return postResultJSON.id;
     }
 
     private async uploadPublicFile(file: File) {
         const credentials = await this.authService.getTemporaryCredentials();
-        if(!this.s3Client) {
+        if (!this.s3Client) {
             this.s3Client = new S3Client({
                 credentials: credentials as any,
                 region: this.awsRegion
@@ -42,6 +71,6 @@ export class DataService {
     }
 
     public isAuthorized() {
-        return true;
+        return this.authService.isAuthorized();
     }
 }
