@@ -2,16 +2,17 @@ import { type CognitoUser } from '@aws-amplify/auth';
 import { CognitoIdentityClient } from '@aws-sdk/client-cognito-identity';
 import { fromCognitoIdentityPool } from '@aws-sdk/credential-providers';
 import { Amplify, Auth } from 'aws-amplify';
+import * as Outputs from '../../outputs.json';
 
 const awsRegion = 'us-west-2';
-const userPoolId = 'us-west-2_9ekqosm9e';
-const identityPoolId = 'us-west-2:3e223426-4100-49b4-9042-83f438d115f9';
+const userPoolId = Outputs.AuthStack.SpaceUserPoolId;
+const identityPoolId = Outputs.AuthStack.SpaceIdentityPoolId;
 
 Amplify.configure({
     Auth: {
         region: awsRegion,
         userPoolId: userPoolId,
-        userPoolWebClientId: '4bk8bap32gucj9n6cvt0p4ihh',
+        userPoolWebClientId: Outputs.AuthStack.SpaceUserPoolClientId,
         identityPoolId: identityPoolId,
         authenticationFlowType: 'USER_PASSWORD_AUTH'
     }

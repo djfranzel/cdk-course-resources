@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "bootstrap": "cdk bootstrap",
     "deploy": "cdk deploy --all --outputs-file outputs.json"
   },
   "keywords": [],
