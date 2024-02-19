@@ -2,7 +2,7 @@ import { type CognitoUser } from '@aws-amplify/auth';
 import { CognitoIdentityClient } from '@aws-sdk/client-cognito-identity';
 import { fromCognitoIdentityPool } from '@aws-sdk/credential-providers';
 import { Amplify, Auth } from 'aws-amplify';
-import * as Outputs from '../../outputs.json';
+import * as Outputs from '../outputs.json';
 
 const awsRegion = 'us-west-2';
 const userPoolId = Outputs.AuthStack.SpaceUserPoolId;
