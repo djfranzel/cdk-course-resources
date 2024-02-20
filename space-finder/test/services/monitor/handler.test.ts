@@ -1,9 +1,13 @@
-import { handler } from "../../src/services/monitor/handler"
+import { handler } from "../../../src/services/monitor/handler"
 
 describe('Monitor lambda tests', () => {
 
     const fetchSpy = jest.spyOn(global, 'fetch');
     fetchSpy.mockImplementation(() => Promise.resolve({} as any));
+
+    afterEach(() => {
+        jest.clearAllMocks()
+    })
 
     test('makes requests for records in SnsEvents', async () => {
         await handler({
