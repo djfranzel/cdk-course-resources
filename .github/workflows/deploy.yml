@@ -27,7 +27,7 @@ jobs:
         run: npm run build
 
       - name: Install Backend Dependencies
-        working-directory: space-finder
+        working-directory: backend
         run: npm install
 
       - name: Bootstrap CDK (if needed)
@@ -38,7 +38,7 @@ jobs:
           AWS_DEFAULT_REGION: ${{ vars.AWS_REGION }}
 
       - name: Deploy application
-        working-directory: space-finder
+        working-directory: backend
         run: |
           npx cdk deploy --all --outputs-file outputs.json --require-approval never
         env:
