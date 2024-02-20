@@ -18,13 +18,17 @@ jobs:
         with:
           node-version: 20.11.0
 
-      - name: Install Dependencies
-        working-directory: space-finder
+      - name: Install Frontend Dependencies
+        working-directory: frontend
         run: npm install
 
       - name: Build Frontend
         working-directory: frontend
         run: npm run build
+
+      - name: Install Backend Dependencies
+        working-directory: space-finder
+        run: npm install
 
       - name: Bootstrap CDK (if needed)
         run: npx cdk bootstrap
